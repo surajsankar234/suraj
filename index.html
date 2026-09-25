@@ -3,2367 +3,423 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Suraj Sankar — Full-Stack Web Developer, UI Designer and Digital Technical Service Provider from Nepal.">
+  <meta name="theme-color" content="#06110f">
+  <title>Suraj Sankar — Full-Stack Developer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  <title>Bloom Bake — Freshly Made With Love</title>
-
-  <!-- Tailwind -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            sage: '#71856B',
-            deepSage: '#3F5140',
-            cream: '#FFF9EF',
-            blush: '#E9B9AD',
-            peach: '#F5D5B8',
-            cocoa: '#5B4638'
-          },
           fontFamily: {
-            sans: ['DM Sans', 'sans-serif'],
-            display: ['Playfair Display', 'serif']
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            neon: '#00f5a0',
+            ink: '#06110f'
           }
         }
       }
     }
   </script>
 
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    * {
-      scroll-behavior: smooth;
+    /* ===== Suraj Sankar — custom internal CSS ===== */
+    :root{
+      --bg:#030908;
+      --panel:rgba(9,22,20,.72);
+      --panel-2:rgba(12,31,27,.58);
+      --line:rgba(0,245,160,.18);
+      --green:#00f5a0;
+      --green-2:#00c77d;
+      --muted:#8da39d;
+      --text:#f1faf7;
     }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: #fffaf1;
-      color: #3f5140;
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(circle at 78% 8%, rgba(0,245,160,.10), transparent 28rem),
+        radial-gradient(circle at 5% 42%, rgba(0,245,160,.06), transparent 25rem),
+        var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
     }
-
-    .display {
-      font-family: 'Playfair Display', serif;
+    body::before{
+      content:"";
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom, black, transparent 90%);
     }
-
-    .soft-shadow {
-      box-shadow: 0 20px 60px rgba(63,81,64,.10);
+    ::selection{background:var(--green);color:#00150e}
+    .glass{
+      background:linear-gradient(135deg,rgba(15,35,31,.72),rgba(5,15,13,.55));
+      border:1px solid var(--line);
+      box-shadow:0 20px 80px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.035);
+      backdrop-filter:blur(18px);
     }
-
-    .glass {
-      background: rgba(255,250,241,.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+    .green-text{
+      background:linear-gradient(90deg,#00f5a0,#62ffd0);
+      -webkit-background-clip:text;background-clip:text;color:transparent;
     }
-
-    .hero-shape {
-      border-radius: 48% 52% 50% 50% / 38% 40% 60% 62%;
+    .glow{box-shadow:0 0 0 1px rgba(0,245,160,.14),0 0 45px rgba(0,245,160,.10)}
+    .btn-green{
+      background:var(--green); color:#00150e;
+      box-shadow:0 10px 30px rgba(0,245,160,.18);
+      transition:.25s ease;
     }
-
-    .organic {
-      border-radius: 32px 18px 34px 22px;
+    .btn-green:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,245,160,.30)}
+    .btn-outline{border:1px solid rgba(0,245,160,.28);transition:.25s ease}
+    .btn-outline:hover{border-color:var(--green);background:rgba(0,245,160,.06);transform:translateY(-2px)}
+    .nav-link{position:relative;color:#a8bbb6;transition:.2s}
+    .nav-link:hover,.nav-link.active{color:#fff}
+    .nav-link.active::after{
+      content:"";position:absolute;left:0;right:0;bottom:-15px;height:2px;
+      background:var(--green);box-shadow:0 0 14px var(--green)
     }
-
-    .product-card {
-      transition: .35s ease;
+    .hero-orb{
+      position:absolute;width:520px;height:520px;border-radius:50%;
+      background:radial-gradient(circle,rgba(0,245,160,.22),rgba(0,245,160,.03) 50%,transparent 70%);
+      filter:blur(2px);pointer-events:none;
     }
-
-    .product-card:hover {
-      transform: translateY(-8px);
+    .portrait-wrap{
+      position:relative; width:min(100%,520px); aspect-ratio:1/1;
+      display:grid;place-items:center;
     }
-
-    .product-img {
-      transition: transform .6s ease;
+    .portrait-wrap::before{
+      content:"";position:absolute;inset:8%;
+      border:1px solid rgba(0,245,160,.35);border-radius:50%;
+      box-shadow:0 0 70px rgba(0,245,160,.12);
+      animation:pulseRing 4s ease-in-out infinite;
     }
-
-    .product-card:hover .product-img {
-      transform: scale(1.07);
+    .portrait-wrap::after{
+      content:"";position:absolute;inset:2%;
+      border:1px dashed rgba(0,245,160,.22);border-radius:50%;
+      animation:spin 25s linear infinite;
     }
-
-    .category-btn.active {
-      background: #3f5140;
-      color: white;
+    .portrait{
+      position:relative;z-index:2;width:72%;height:82%;object-fit:cover;
+      object-position:center top;border-radius:46% 46% 20% 20%;
+      filter:saturate(1.05) contrast(1.02);
+      mask-image:linear-gradient(to bottom,black 82%,transparent 100%);
     }
-
-    .fade-up {
-      animation: fadeUp .8s ease forwards;
-      opacity: 0;
-      transform: translateY(20px);
+    .project-card{transition:.3s ease;transform-style:preserve-3d}
+    .project-card:hover{transform:translateY(-7px);border-color:rgba(0,245,160,.48)}
+    .project-card img{transition:.4s ease}
+    .project-card:hover img{transform:scale(1.045)}
+    .skill-card,.service-card{transition:.25s ease}
+    .skill-card:hover,.service-card:hover{transform:translateY(-4px);border-color:rgba(0,245,160,.4)}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.show{opacity:1;transform:none}
+    .marquee{overflow:hidden;white-space:nowrap}
+    .marquee-track{display:inline-flex;gap:3rem;animation:marquee 22s linear infinite}
+    .cursor-dot{
+      position:fixed;width:8px;height:8px;border-radius:50%;background:var(--green);
+      pointer-events:none;z-index:9999;mix-blend-mode:screen;box-shadow:0 0 18px var(--green);
+      transform:translate(-50%,-50%);
     }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .form-input{
+      width:100%;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.09);
+      border-radius:14px;padding:13px 14px;outline:none;transition:.2s;color:#fff;
     }
-
-    .float {
-      animation: floating 4s ease-in-out infinite;
+    .form-input:focus{border-color:rgba(0,245,160,.55);box-shadow:0 0 0 3px rgba(0,245,160,.07)}
+    .toast{
+      position:fixed;right:22px;bottom:22px;z-index:999;
+      transform:translateY(30px);opacity:0;pointer-events:none;transition:.3s;
     }
-
-    @keyframes floating {
-      0%,100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-    }
-
-    .modal {
-      display: none;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .toast {
-      transform: translateY(100px);
-      opacity: 0;
-      pointer-events: none;
-      transition: .35s ease;
-    }
-
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .hide-product {
-      display: none !important;
-    }
-
-    .marquee {
-      overflow: hidden;
-      white-space: nowrap;
-    }
-
-    .marquee-track {
-      display: inline-block;
-      animation: marquee 22s linear infinite;
-    }
-
-    @keyframes marquee {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-50%);
-      }
+    .toast.show{transform:none;opacity:1}
+    @keyframes pulseRing{50%{transform:scale(1.06);opacity:.65}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+    @media(max-width:768px){
+      .nav-link.active::after{display:none}
+      .hero-orb{width:350px;height:350px}
+      .portrait-wrap{max-width:390px;margin:auto}
+      .cursor-dot{display:none}
     }
   </style>
 </head>
 
-<body>
+<body class="font-sans antialiased">
+  <div class="cursor-dot" id="cursorDot"></div>
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
-<header id="header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-    <div class="h-20 flex items-center justify-between">
-
-      <!-- Logo -->
-      <a href="#" class="flex items-center gap-3">
-
-        <div class="w-11 h-11 rounded-full bg-deepSage text-white flex items-center justify-center">
-          <i data-lucide="flower-2" class="w-5 h-5"></i>
-        </div>
-
-        <div>
-          <h1 class="display text-xl font-bold text-deepSage">
-            Bloom Bake
-          </h1>
-
-          <p class="text-[9px] tracking-[.25em] uppercase text-sage">
-            Bakery & Café
-          </p>
-        </div>
-
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-[#030908]/75 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
+        <span class="w-10 h-10 rounded-xl grid place-items-center bg-neon text-black font-black text-lg shadow-[0_0_25px_rgba(0,245,160,.25)]">&lt;/&gt;</span>
+        <span>
+          <strong class="block leading-none text-lg">Suraj Sankar</strong>
+          <small class="text-[10px] tracking-[.24em] uppercase text-gray-500">Code • Design • Create</small>
+        </span>
       </a>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
-
-        <a href="#home" class="hover:text-blush transition">
-          Home
-        </a>
-
-        <a href="#menu" class="hover:text-blush transition">
-          Menu
-        </a>
-
-        <a href="#specials" class="hover:text-blush transition">
-          Specials
-        </a>
-
-        <a href="#story" class="hover:text-blush transition">
-          Our Story
-        </a>
-
-        <a href="#gallery" class="hover:text-blush transition">
-          Gallery
-        </a>
-
-        <a href="#contact" class="hover:text-blush transition">
-          Contact
-        </a>
-
+      <nav class="hidden lg:flex items-center gap-8 text-sm">
+        <a class="nav-link active" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#services">Services</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#contact">Contact</a>
       </nav>
 
-      <!-- Actions -->
       <div class="flex items-center gap-2">
-
-        <button onclick="openModal('searchModal')"
-          class="hidden sm:flex w-10 h-10 rounded-full bg-white items-center justify-center hover:bg-peach transition">
-          <i data-lucide="search" class="w-4 h-4"></i>
-        </button>
-
-        <button onclick="openModal('cartModal')"
-          class="relative w-10 h-10 rounded-full bg-white flex items-center justify-center hover:bg-peach transition">
-
-          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-
-          <span id="cartCount"
-            class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-blush text-white text-[10px] flex items-center justify-center">
-            0
-          </span>
-
-        </button>
-
-        <button onclick="toggleMenu()"
-          class="lg:hidden w-10 h-10 rounded-full bg-deepSage text-white flex items-center justify-center">
-
-          <i data-lucide="menu" class="w-5 h-5"></i>
-
-        </button>
-
+        <a class="hidden sm:grid place-items-center w-10 h-10 rounded-full btn-outline" href="https://github.com/surajsankar234" target="_blank" aria-label="GitHub"><i data-lucide="github" class="w-4"></i></a>
+        <button id="themeBtn" class="hidden sm:grid place-items-center w-10 h-10 rounded-full btn-outline" aria-label="Theme"><i data-lucide="sun" class="w-4"></i></button>
+        <a href="#contact" class="hidden sm:flex btn-green rounded-full px-5 py-2.5 font-semibold text-sm">Let's Talk <span class="ml-2">→</span></a>
+        <button id="menuBtn" class="lg:hidden w-10 h-10 grid place-items-center rounded-xl btn-outline" aria-label="Menu"><i data-lucide="menu"></i></button>
       </div>
-
     </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div id="mobileMenu"
-    class="hidden bg-cream border-t border-sage/10 px-5 py-6">
-
-    <div class="flex flex-col gap-5 text-sm font-medium">
-
-      <a href="#home" onclick="toggleMenu()">Home</a>
-      <a href="#menu" onclick="toggleMenu()">Menu</a>
-      <a href="#specials" onclick="toggleMenu()">Specials</a>
-      <a href="#story" onclick="toggleMenu()">Our Story</a>
-      <a href="#gallery" onclick="toggleMenu()">Gallery</a>
-      <a href="#contact" onclick="toggleMenu()">Contact</a>
-
-      <button onclick="openModal('orderModal');toggleMenu()"
-        class="bg-deepSage text-white py-3 rounded-full">
-        Order Now
-      </button>
-
-    </div>
-
-  </div>
-
-</header>
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section id="home" class="relative min-h-screen pt-28 overflow-hidden">
-
-  <!-- Decorative blobs -->
-  <div class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-peach/40 rounded-full blur-3xl"></div>
-
-  <div class="absolute bottom-0 -left-40 w-[400px] h-[400px] bg-sage/10 rounded-full blur-3xl"></div>
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <div class="grid lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-120px)]">
-
-      <!-- Left -->
-      <div class="fade-up">
-
-        <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm mb-6">
-
-          <span class="w-2 h-2 rounded-full bg-sage"></span>
-
-          <span class="text-xs font-semibold tracking-wide">
-            Freshly baked every morning
-          </span>
-
-        </div>
-
-        <h2 class="display text-5xl sm:text-6xl lg:text-7xl leading-[1.05] text-deepSage">
-
-          A little sweetness
-          <span class="text-blush italic">
-            for every day.
-          </span>
-
-        </h2>
-
-        <p class="mt-7 text-base sm:text-lg text-deepSage/65 max-w-xl leading-8">
-
-          Handmade cakes, delicate pastries and cozy little treats
-          baked with real ingredients, warm hearts and a whole lot of love.
-
-        </p>
-
-        <div class="flex flex-wrap gap-3 mt-8">
-
-          <button onclick="document.getElementById('menu').scrollIntoView()"
-            class="px-7 py-4 bg-deepSage text-white rounded-full font-semibold hover:-translate-y-1 transition shadow-lg">
-
-            Explore Menu
-
-            <i data-lucide="arrow-right" class="inline w-4 h-4 ml-2"></i>
-
-          </button>
-
-          <button onclick="openModal('customModal')"
-            class="px-7 py-4 bg-white text-deepSage rounded-full font-semibold border border-sage/10 hover:bg-peach transition">
-
-            Custom Cake
-          </button>
-
-        </div>
-
-        <div class="flex items-center gap-7 mt-10">
-
-          <div>
-            <p class="text-2xl font-bold text-deepSage">4.9★</p>
-            <p class="text-xs text-deepSage/50">
-              Customer rating
-            </p>
-          </div>
-
-          <div class="w-px h-10 bg-sage/20"></div>
-
-          <div>
-            <p class="text-2xl font-bold text-deepSage">1K+</p>
-            <p class="text-xs text-deepSage/50">
-              Happy customers
-            </p>
-          </div>
-
-        </div>
-
+    <div id="mobileMenu" class="hidden lg:hidden px-5 pb-5">
+      <div class="glass rounded-2xl p-4 grid gap-2">
+        <a class="mobile-link p-3 rounded-xl hover:bg-white/5" href="#home">Home</a>
+        <a class="mobile-link p-3 rounded-xl hover:bg-white/5" href="#about">About</a>
+        <a class="mobile-link p-3 rounded-xl hover:bg-white/5" href="#projects">Projects</a>
+        <a class="mobile-link p-3 rounded-xl hover:bg-white/5" href="#services">Services</a>
+        <a class="mobile-link p-3 rounded-xl hover:bg-white/5" href="#skills">Skills</a>
+        <a class="mobile-link p-3 rounded-xl hover:bg-white/5" href="#contact">Contact</a>
       </div>
+    </div>
+  </header>
 
-
-      <!-- Right -->
-      <div class="relative flex justify-center fade-up">
-
-        <div class="absolute w-[90%] aspect-square bg-peach/60 hero-shape"></div>
-
-        <div class="relative w-[90%] max-w-[560px] aspect-square hero-shape overflow-hidden border-[12px] border-white soft-shadow">
-
-          <img
-            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85"
-            class="w-full h-full object-cover"
-            alt="Fresh cake">
-
-        </div>
-
-        <!-- Floating card -->
-        <div class="absolute left-0 bottom-8 sm:left-2 bg-white rounded-3xl p-4 shadow-xl flex items-center gap-3 float">
-
-          <div class="w-12 h-12 rounded-2xl bg-blush/20 flex items-center justify-center">
-
-            <i data-lucide="heart" class="w-5 h-5 text-blush"></i>
-
-          </div>
-
-          <div>
-            <p class="font-bold text-sm">
-              Baked with love
+  <main>
+    <!-- HERO -->
+    <section id="home" class="min-h-screen pt-28 lg:pt-32 flex items-center">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 w-full">
+        <div class="grid lg:grid-cols-[1.02fr_.98fr] gap-10 lg:gap-4 items-center">
+          <div class="relative z-10 reveal">
+            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neon/30 bg-neon/5 text-neon text-xs font-semibold tracking-wider uppercase">
+              <span class="w-1.5 h-1.5 rounded-full bg-neon animate-pulse"></span> Available for projects
+            </span>
+            <p class="mt-7 text-gray-400 text-lg">Hi, I'm</p>
+            <h1 class="mt-1 text-5xl sm:text-6xl lg:text-8xl font-black tracking-tight leading-[.92]">
+              Suraj <span class="green-text">Sankar</span>
+            </h1>
+            <h2 class="mt-7 text-xl sm:text-2xl font-semibold">Full-Stack Web Developer <span class="text-neon">&</span> Digital Creator</h2>
+            <p class="mt-5 max-w-2xl text-gray-400 leading-7">
+              I build modern web applications, polished interfaces and practical digital solutions.
+              Laravel, PHP, Filament, JavaScript, SQL and creative design — from idea to launch.
             </p>
 
-            <p class="text-xs text-deepSage/50">
-              Every single day
-            </p>
-          </div>
-
-        </div>
-
-        <!-- Flower -->
-        <div class="absolute right-0 top-10 w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg float">
-
-          <i data-lucide="flower-2" class="w-7 h-7 text-sage"></i>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     MARQUEE
-========================================================= -->
-
-<section class="bg-deepSage text-white py-4 marquee">
-
-  <div class="marquee-track text-sm font-medium">
-
-    ✦ Fresh Cakes &nbsp;&nbsp;&nbsp;
-    ✦ Handmade Pastries &nbsp;&nbsp;&nbsp;
-    ✦ Custom Celebration Cakes &nbsp;&nbsp;&nbsp;
-    ✦ Coffee & Cozy Moments &nbsp;&nbsp;&nbsp;
-    ✦ Fresh Cakes &nbsp;&nbsp;&nbsp;
-    ✦ Handmade Pastries &nbsp;&nbsp;&nbsp;
-    ✦ Custom Celebration Cakes &nbsp;&nbsp;&nbsp;
-    ✦ Coffee & Cozy Moments &nbsp;&nbsp;&nbsp;
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     MENU
-========================================================= -->
-
-<section id="menu" class="py-24">
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <div class="text-center max-w-2xl mx-auto">
-
-      <span class="text-xs uppercase tracking-[.25em] text-sage font-bold">
-        Our menu
-      </span>
-
-      <h2 class="display text-4xl sm:text-5xl text-deepSage mt-3">
-        Made fresh, made happy.
-      </h2>
-
-      <p class="mt-5 text-deepSage/55 leading-7">
-        From celebration cakes to tiny afternoon treats,
-        there is always something sweet waiting for you.
-      </p>
-
-    </div>
-
-
-    <!-- Categories -->
-
-    <div class="flex flex-wrap justify-center gap-2 mt-10">
-
-      <button class="category-btn active px-5 py-3 rounded-full bg-white text-sm font-semibold transition"
-        onclick="filterProducts('all',this)">
-        All
-      </button>
-
-      <button class="category-btn px-5 py-3 rounded-full bg-white text-sm font-semibold transition"
-        onclick="filterProducts('cakes',this)">
-        Cakes
-      </button>
-
-      <button class="category-btn px-5 py-3 rounded-full bg-white text-sm font-semibold transition"
-        onclick="filterProducts('pastry',this)">
-        Pastries
-      </button>
-
-      <button class="category-btn px-5 py-3 rounded-full bg-white text-sm font-semibold transition"
-        onclick="filterProducts('dessert',this)">
-        Desserts
-      </button>
-
-      <button class="category-btn px-5 py-3 rounded-full bg-white text-sm font-semibold transition"
-        onclick="filterProducts('drink',this)">
-        Drinks
-      </button>
-
-    </div>
-
-
-    <!-- Product Grid -->
-
-    <div id="productGrid"
-      class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
-
-
-      <!-- Product 1 -->
-      <article class="product-card product cakes bg-white rounded-[28px] overflow-hidden soft-shadow">
-
-        <div class="relative h-64 overflow-hidden">
-
-          <img
-            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
-            class="product-img w-full h-full object-cover"
-            alt="Strawberry cake">
-
-          <button onclick="addToCart('Strawberry Cloud Cake',850)"
-            class="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-deepSage hover:text-white transition">
-
-            <i data-lucide="plus" class="w-5 h-5"></i>
-
-          </button>
-
-        </div>
-
-        <div class="p-5">
-
-          <span class="text-[10px] uppercase tracking-widest text-sage font-bold">
-            Best seller
-          </span>
-
-          <h3 class="display text-xl mt-2">
-            Strawberry Cloud Cake
-          </h3>
-
-          <p class="text-sm text-deepSage/50 mt-2">
-            Vanilla sponge · strawberry cream
-          </p>
-
-          <div class="flex justify-between items-center mt-5">
-
-            <span class="font-bold">
-              Rs. 850
-            </span>
-
-            <button onclick="quickOrder('Strawberry Cloud Cake')"
-              class="text-xs font-bold underline">
-              Order
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 2 -->
-
-      <article class="product product pastry bg-white rounded-[28px] overflow-hidden soft-shadow">
-
-        <div class="relative h-64 overflow-hidden">
-
-          <img
-            src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80"
-            class="product-img w-full h-full object-cover"
-            alt="Croissant">
-
-          <button onclick="addToCart('Butter Croissant',180)"
-            class="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-deepSage hover:text-white transition">
-
-            <i data-lucide="plus" class="w-5 h-5"></i>
-
-          </button>
-
-        </div>
-
-        <div class="p-5">
-
-          <span class="text-[10px] uppercase tracking-widest text-sage font-bold">
-            Fresh today
-          </span>
-
-          <h3 class="display text-xl mt-2">
-            Butter Croissant
-          </h3>
-
-          <p class="text-sm text-deepSage/50 mt-2">
-            Flaky · buttery · golden
-          </p>
-
-          <div class="flex justify-between items-center mt-5">
-
-            <span class="font-bold">
-              Rs. 180
-            </span>
-
-            <button onclick="quickOrder('Butter Croissant')"
-              class="text-xs font-bold underline">
-              Order
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 3 -->
-
-      <article class="product dessert bg-white rounded-[28px] overflow-hidden soft-shadow">
-
-        <div class="relative h-64 overflow-hidden">
-
-          <img
-            src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=700&q=80"
-            class="product-img w-full h-full object-cover"
-            alt="Berry dessert">
-
-          <button onclick="addToCart('Berry Garden Tart',420)"
-            class="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-deepSage hover:text-white transition">
-
-            <i data-lucide="plus" class="w-5 h-5"></i>
-
-          </button>
-
-        </div>
-
-        <div class="p-5">
-
-          <span class="text-[10px] uppercase tracking-widest text-sage font-bold">
-            New
-          </span>
-
-          <h3 class="display text-xl mt-2">
-            Berry Garden Tart
-          </h3>
-
-          <p class="text-sm text-deepSage/50 mt-2">
-            Vanilla cream · fresh berries
-          </p>
-
-          <div class="flex justify-between items-center mt-5">
-
-            <span class="font-bold">
-              Rs. 420
-            </span>
-
-            <button onclick="quickOrder('Berry Garden Tart')"
-              class="text-xs font-bold underline">
-              Order
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 4 -->
-
-      <article class="product drink bg-white rounded-[28px] overflow-hidden soft-shadow">
-
-        <div class="relative h-64 overflow-hidden">
-
-          <img
-            src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=700&q=80"
-            class="product-img w-full h-full object-cover"
-            alt="Coffee">
-
-          <button onclick="addToCart('Bloom Cappuccino',220)"
-            class="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-deepSage hover:text-white transition">
-
-            <i data-lucide="plus" class="w-5 h-5"></i>
-
-          </button>
-
-        </div>
-
-        <div class="p-5">
-
-          <span class="text-[10px] uppercase tracking-widest text-sage font-bold">
-            Café favorite
-          </span>
-
-          <h3 class="display text-xl mt-2">
-            Bloom Cappuccino
-          </h3>
-
-          <p class="text-sm text-deepSage/50 mt-2">
-            Espresso · silky milk foam
-          </p>
-
-          <div class="flex justify-between items-center mt-5">
-
-            <span class="font-bold">
-              Rs. 220
-            </span>
-
-            <button onclick="quickOrder('Bloom Cappuccino')"
-              class="text-xs font-bold underline">
-              Order
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 5 -->
-
-      <article class="product cakes bg-white rounded-[28px] overflow-hidden soft-shadow">
-
-        <div class="relative h-64 overflow-hidden">
-
-          <img
-            src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=700&q=80"
-            class="product-img w-full h-full object-cover"
-            alt="Chocolate cake">
-
-          <button onclick="addToCart('Chocolate Garden Cake',950)"
-            class="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-deepSage hover:text-white transition">
-
-            <i data-lucide="plus" class="w-5 h-5"></i>
-
-          </button>
-
-        </div>
-
-        <div class="p-5">
-
-          <h3 class="display text-xl">
-            Chocolate Garden Cake
-          </h3>
-
-          <p class="text-sm text-deepSage/50 mt-2">
-            Belgian chocolate · fresh cream
-          </p>
-
-          <div class="flex justify-between items-center mt-5">
-
-            <span class="font-bold">
-              Rs. 950
-            </span>
-
-            <button onclick="quickOrder('Chocolate Garden Cake')"
-              class="text-xs font-bold underline">
-              Order
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 6 -->
-
-      <article class="product pastry bg-white rounded-[28px] overflow-hidden soft-shadow">
-
-        <div class="relative h-64 overflow-hidden">
-
-          <img
-            src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=700&q=80"
-            class="product-img w-full h-full object-cover"
-            alt="Cinnamon roll">
-
-          <button onclick="addToCart('Cinnamon Roll',190)"
-            class="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-deepSage hover:text-white transition">
-
-            <i data-lucide="plus" class="w-5 h-5"></i>
-
-          </button>
-
-        </div>
-
-        <div class="p-5">
-
-          <h3 class="display text-xl">
-            Cinnamon Roll
-          </h3>
-
-          <p class="text-sm text-deepSage/50 mt-2">
-            Cinnamon · brown sugar · glaze
-          </p>
-
-          <div class="flex justify-between items-center mt-5">
-
-            <span class="font-bold">
-              Rs. 190
-            </span>
-
-            <button onclick="quickOrder('Cinnamon Roll')"
-              class="text-xs font-bold underline">
-              Order
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 7 -->
-
-      <article class="product dessert bg-white rounded-[28px] overflow-hidden soft-shadow">
-
-        <div class="relative h-64 overflow-hidden">
-
-          <img
-            src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=80"
-            class="product-img w-full h-full object-cover"
-            alt="Donuts">
-
-          <button onclick="addToCart('Mini Donut Box',450)"
-            class="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-deepSage hover:text-white transition">
-
-            <i data-lucide="plus" class="w-5 h-5"></i>
-
-          </button>
-
-        </div>
-
-        <div class="p-5">
-
-          <h3 class="display text-xl">
-            Mini Donut Box
-          </h3>
-
-          <p class="text-sm text-deepSage/50 mt-2">
-            8 assorted mini donuts
-          </p>
-
-          <div class="flex justify-between items-center mt-5">
-
-            <span class="font-bold">
-              Rs. 450
-            </span>
-
-            <button onclick="quickOrder('Mini Donut Box')"
-              class="text-xs font-bold underline">
-              Order
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- Product 8 -->
-
-      <article class="product drink bg-white rounded-[28px] overflow-hidden soft-shadow">
-
-        <div class="relative h-64 overflow-hidden">
-
-          <img
-            src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=700&q=80"
-            class="product-img w-full h-full object-cover"
-            alt="Iced drink">
-
-          <button onclick="addToCart('Vanilla Iced Latte',260)"
-            class="absolute bottom-4 right-4 w-11 h-11 rounded-full bg-white flex items-center justify-center shadow-lg hover:bg-deepSage hover:text-white transition">
-
-            <i data-lucide="plus" class="w-5 h-5"></i>
-
-          </button>
-
-        </div>
-
-        <div class="p-5">
-
-          <h3 class="display text-xl">
-            Vanilla Iced Latte
-          </h3>
-
-          <p class="text-sm text-deepSage/50 mt-2">
-            Espresso · vanilla · cold milk
-          </p>
-
-          <div class="flex justify-between items-center mt-5">
-
-            <span class="font-bold">
-              Rs. 260
-            </span>
-
-            <button onclick="quickOrder('Vanilla Iced Latte')"
-              class="text-xs font-bold underline">
-              Order
-            </button>
-
-          </div>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     DAILY SPECIAL
-========================================================= -->
-
-<section id="specials" class="py-20">
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <div class="bg-[#EED7C7] rounded-[40px] overflow-hidden">
-
-      <div class="grid lg:grid-cols-2">
-
-        <div class="p-8 sm:p-12 lg:p-16 flex items-center">
-
-          <div>
-
-            <span class="text-xs uppercase tracking-[.25em] font-bold text-sage">
-              Today at Bloom
-            </span>
-
-            <h2 class="display text-4xl sm:text-5xl mt-4 text-deepSage">
-              Strawberry
-              <br>
-              Shortcake.
-            </h2>
-
-            <p class="mt-5 text-deepSage/60 leading-7 max-w-md">
-              Soft vanilla sponge layered with fresh strawberries,
-              silky cream and a little touch of sweetness.
-            </p>
-
-            <div class="flex items-center gap-5 mt-7">
-
-              <span class="text-3xl font-bold">
-                Rs. 780
-              </span>
-
-              <span class="line-through text-deepSage/40">
-                Rs. 900
-              </span>
-
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#projects" class="btn-green rounded-full px-6 py-3.5 font-bold">View My Work →</a>
+              <a href="#contact" class="btn-outline rounded-full px-6 py-3.5 font-semibold">Let's Work Together</a>
             </div>
 
-            <button onclick="quickOrder('Strawberry Shortcake')"
-              class="mt-7 bg-deepSage text-white px-7 py-4 rounded-full font-semibold">
-              Get Today's Special
-            </button>
-
+            <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl">
+              <div><p class="text-neon font-bold">Laravel</p><p class="text-xs text-gray-500">Backend</p></div>
+              <div><p class="text-neon font-bold">Filament</p><p class="text-xs text-gray-500">Admin Panels</p></div>
+              <div><p class="text-neon font-bold">UI/UX</p><p class="text-xs text-gray-500">Creative Design</p></div>
+              <div><p class="text-neon font-bold">24/7</p><p class="text-xs text-gray-500">Technical Support</p></div>
+            </div>
           </div>
 
+          <div class="relative flex justify-center reveal">
+            <div class="hero-orb"></div>
+            <div class="portrait-wrap">
+              <!-- Replace this URL with a local photo if desired -->
+              <img
+                class="portrait"
+                src="https://lh3.googleusercontent.com/a/ACg8ocIk8pYdz5zSP6ix694NXHaF7O3qd6YlGJrYNvxy_jJgFYQUJsAT=s192-c-mo"
+                alt="Suraj Sankar">
+              <div class="absolute z-10 bottom-[8%] left-[3%] glass rounded-2xl px-4 py-3">
+                <p class="text-xs text-gray-500">Currently building</p>
+                <p class="font-bold text-sm">Web • Design • Digital</p>
+              </div>
+              <div class="absolute z-10 top-[17%] right-[0%] glass rounded-2xl px-4 py-3 hidden sm:block">
+                <p class="text-neon text-xs font-bold">NEPAL 🇳🇵</p>
+                <p class="text-xs text-gray-400">Available worldwide</p>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="min-h-[400px]">
-
-          <img
-            src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=1000&q=85"
-            class="w-full h-full object-cover"
-            alt="Strawberry cake">
-
-        </div>
-
       </div>
+    </section>
 
+    <!-- MARQUEE -->
+    <div class="border-y border-white/5 py-4 marquee text-xs uppercase tracking-[.3em] text-gray-500">
+      <div class="marquee-track">
+        <span>Full-Stack Development</span><span>✦</span><span>Laravel</span><span>✦</span>
+        <span>PHP</span><span>✦</span><span>UI/UX Design</span><span>✦</span>
+        <span>Digital Solutions</span><span>✦</span><span>Full-Stack Development</span><span>✦</span>
+        <span>Laravel</span><span>✦</span><span>PHP</span><span>✦</span>
+        <span>UI/UX Design</span><span>✦</span><span>Digital Solutions</span>
+      </div>
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     BUILD YOUR BOX
-========================================================= -->
-
-<section class="py-24 bg-white">
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-
-      <div class="relative">
-
-        <div class="absolute inset-5 bg-blush/20 rounded-[40px] rotate-3"></div>
-
-        <img
-          src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=85"
-          class="relative rounded-[40px] w-full aspect-[4/3] object-cover"
-          alt="Dessert box">
-
-        <div class="absolute -bottom-5 -right-3 sm:right-8 bg-white rounded-3xl p-5 shadow-xl">
-
-          <p class="text-xs text-deepSage/50">
-            Starting from
-          </p>
-
-          <p class="text-2xl font-bold mt-1">
-            Rs. 499
-          </p>
-
-        </div>
-
-      </div>
-
-      <div>
-
-        <span class="text-xs uppercase tracking-[.25em] text-sage font-bold">
-          Build your own
-        </span>
-
-        <h2 class="display text-4xl sm:text-5xl mt-3 text-deepSage">
-          Your box.
-          <br>
-          Your rules.
-        </h2>
-
-        <p class="mt-5 text-deepSage/55 leading-8">
-          Pick your favorite little treats and create a dessert box
-          made exactly for you, your friends or someone special.
-        </p>
-
-        <div class="grid grid-cols-2 gap-4 mt-8">
-
-          <div class="p-5 rounded-3xl bg-cream">
-            <i data-lucide="cake-slice" class="w-6 h-6 text-blush"></i>
-            <p class="font-bold mt-4">Mini Cakes</p>
-            <p class="text-xs text-deepSage/50 mt-1">
-              12+ flavors
-            </p>
-          </div>
-
-          <div class="p-5 rounded-3xl bg-cream">
-            <i data-lucide="cookie" class="w-6 h-6 text-sage"></i>
-            <p class="font-bold mt-4">Cookies</p>
-            <p class="text-xs text-deepSage/50 mt-1">
-              Freshly baked
-            </p>
-          </div>
-
-          <div class="p-5 rounded-3xl bg-cream">
-            <i data-lucide="heart" class="w-6 h-6 text-blush"></i>
-            <p class="font-bold mt-4">Brownies</p>
-            <p class="text-xs text-deepSage/50 mt-1">
-              Fudgy & rich
-            </p>
-          </div>
-
-          <div class="p-5 rounded-3xl bg-cream">
-            <i data-lucide="coffee" class="w-6 h-6 text-sage"></i>
-            <p class="font-bold mt-4">Coffee</p>
-            <p class="text-xs text-deepSage/50 mt-1">
-              Hot or iced
-            </p>
-          </div>
-
-        </div>
-
-        <button onclick="openModal('boxModal')"
-          class="mt-8 w-full sm:w-auto px-8 py-4 bg-deepSage text-white rounded-full font-semibold">
-
-          Build My Box
-
-          <i data-lucide="arrow-up-right" class="inline w-4 h-4 ml-2"></i>
-
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     STORY
-========================================================= -->
-
-<section id="story" class="py-24">
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <div class="grid lg:grid-cols-2 gap-14 items-center">
-
-      <div>
-
-        <span class="text-xs uppercase tracking-[.25em] text-sage font-bold">
-          Our little story
-        </span>
-
-        <h2 class="display text-4xl sm:text-5xl mt-3 text-deepSage">
-          From a tiny kitchen
-          to your happy table.
-        </h2>
-
-        <p class="mt-6 text-deepSage/60 leading-8">
-          Bloom Bake started with a simple idea:
-          good food should feel like a warm hug.
-        </p>
-
-        <p class="mt-4 text-deepSage/60 leading-8">
-          We bake in small batches, use honest ingredients and
-          put a little extra love into every cake, pastry and cup
-          of coffee that leaves our kitchen.
-        </p>
-
-        <div class="grid grid-cols-3 gap-5 mt-8">
-
+    <!-- SKILLS -->
+    <section id="skills" class="py-24">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="flex items-end justify-between gap-5 mb-10 reveal">
           <div>
-            <p class="text-2xl font-bold">100%</p>
-            <p class="text-xs text-deepSage/50 mt-1">
-              Fresh baked
-            </p>
+            <p class="text-neon text-sm font-bold uppercase tracking-[.25em]">Toolbox</p>
+            <h2 class="text-4xl sm:text-5xl font-black mt-2">My <span class="green-text">Skills</span></h2>
+            <p class="text-gray-500 mt-3">Technologies and creative tools I use to build.</p>
           </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
+          <div class="skill-card glass rounded-2xl p-5 text-center reveal"><i data-lucide="code-2" class="mx-auto text-neon"></i><b class="block mt-3">Laravel</b><small class="text-gray-500">PHP Framework</small></div>
+          <div class="skill-card glass rounded-2xl p-5 text-center reveal"><i data-lucide="braces" class="mx-auto text-neon"></i><b class="block mt-3">PHP</b><small class="text-gray-500">Backend</small></div>
+          <div class="skill-card glass rounded-2xl p-5 text-center reveal"><i data-lucide="layout-dashboard" class="mx-auto text-neon"></i><b class="block mt-3">Filament</b><small class="text-gray-500">Admin</small></div>
+          <div class="skill-card glass rounded-2xl p-5 text-center reveal"><i data-lucide="file-code-2" class="mx-auto text-neon"></i><b class="block mt-3">HTML/CSS</b><small class="text-gray-500">Frontend</small></div>
+          <div class="skill-card glass rounded-2xl p-5 text-center reveal"><i data-lucide="zap" class="mx-auto text-neon"></i><b class="block mt-3">JavaScript</b><small class="text-gray-500">Interactive UI</small></div>
+          <div class="skill-card glass rounded-2xl p-5 text-center reveal"><i data-lucide="database" class="mx-auto text-neon"></i><b class="block mt-3">SQL/MySQL</b><small class="text-gray-500">Database</small></div>
+          <div class="skill-card glass rounded-2xl p-5 text-center reveal"><i data-lucide="palette" class="mx-auto text-neon"></i><b class="block mt-3">Adobe/Canva</b><small class="text-gray-500">Design</small></div>
+        </div>
+      </div>
+    </section>
 
+    <!-- PROJECTS -->
+    <section id="projects" class="py-24 border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10 reveal">
           <div>
-            <p class="text-2xl font-bold">25+</p>
-            <p class="text-xs text-deepSage/50 mt-1">
-              Sweet treats
-            </p>
+            <p class="text-neon text-sm font-bold uppercase tracking-[.25em]">Selected work</p>
+            <h2 class="text-4xl sm:text-5xl font-black mt-2">Featured <span class="green-text">Projects</span></h2>
+            <p class="text-gray-500 mt-3">Real projects and working website concepts.</p>
           </div>
+          <a href="https://github.com/surajsankar234" target="_blank" class="btn-outline rounded-full px-5 py-3 text-sm font-semibold">GitHub →</a>
+        </div>
 
-          <div>
-            <p class="text-2xl font-bold">4.9★</p>
-            <p class="text-xs text-deepSage/50 mt-1">
-              Loved by you
-            </p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <article class="project-card glass rounded-3xl overflow-hidden reveal">
+            <div class="h-48 overflow-hidden bg-gray-900"><img src="https://sds.edu.np/" class="w-full h-full object-cover" alt="Singhadevi Secondary School" onerror="this.style.display='none'"></div>
+            <div class="p-5"><span class="text-xs text-neon">EDUCATION • WEBSITE</span><h3 class="text-xl font-bold mt-2">Singhadevi Secondary School</h3><p class="text-sm text-gray-500 mt-2">Official school website with a modern responsive interface.</p><a href="https://sds.edu.np" target="_blank" class="inline-flex mt-5 btn-green rounded-full px-4 py-2 text-sm font-semibold">Live Site ↗</a></div>
+          </article>
+
+          <article class="project-card glass rounded-3xl overflow-hidden reveal">
+            <div class="h-48 overflow-hidden bg-gray-900"><img src="https://mms.sds.edu.np/" class="w-full h-full object-cover" alt="MMS result software" onerror="this.style.display='none'"></div>
+            <div class="p-5"><span class="text-xs text-neon">SOFTWARE • RESULTS</span><h3 class="text-xl font-bold mt-2">MMS Result System</h3><p class="text-sm text-gray-500 mt-2">Student result publishing and management platform.</p><a href="https://mms.sds.edu.np" target="_blank" class="inline-flex mt-5 btn-green rounded-full px-4 py-2 text-sm font-semibold">Live Site ↗</a></div>
+          </article>
+
+          <article class="project-card glass rounded-3xl overflow-hidden reveal">
+            <div class="h-48 overflow-hidden bg-gray-900 flex items-center justify-center"><div class="text-center"><i data-lucide="cake-slice" class="mx-auto w-12 h-12 text-neon"></i><p class="mt-3 font-bold">Bakery × 7</p><p class="text-xs text-gray-500">Seven visual concepts</p></div></div>
+            <div class="p-5"><span class="text-xs text-neon">DESIGN • 7 CONCEPTS</span><h3 class="text-xl font-bold mt-2">Bakery Website Series</h3><p class="text-sm text-gray-500 mt-2">Seven different bakery storefront concepts.</p><div class="flex flex-wrap gap-2 mt-5"><a href="https://modelbakery1.netlify.app" target="_blank" class="btn-outline rounded-full px-3 py-2 text-xs">Model 1</a><a href="https://modelbakery7.netlify.app" target="_blank" class="btn-outline rounded-full px-3 py-2 text-xs">Model 7</a></div></div>
+          </article>
+
+          <article class="project-card glass rounded-3xl overflow-hidden reveal">
+            <div class="h-48 bg-cover bg-center" style="background-image:linear-gradient(135deg,rgba(0,245,160,.1),rgba(0,0,0,.5)),url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1000&q=80')"></div>
+            <div class="p-5"><span class="text-xs text-neon">RENTAL • WEBSITE</span><h3 class="text-xl font-bold mt-2">Sasurali Model</h3><p class="text-sm text-gray-500 mt-2">Bike rental website concept for a local rental business.</p><a href="https://sasuralimodel.netlify.app" target="_blank" class="inline-flex mt-5 btn-green rounded-full px-4 py-2 text-sm font-semibold">Live Site ↗</a></div>
+          </article>
+
+          <article class="project-card glass rounded-3xl overflow-hidden reveal">
+            <div class="h-48 bg-cover bg-center" style="background-image:linear-gradient(135deg,rgba(0,245,160,.08),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1000&q=80')"></div>
+            <div class="p-5"><span class="text-xs text-neon">RENTAL • WEBSITE</span><h3 class="text-xl font-bold mt-2">Model Yatra</h3><p class="text-sm text-gray-500 mt-2">Rental and travel business website with booking-focused UI.</p><a href="https://modelyatra.netlify.app" target="_blank" class="inline-flex mt-5 btn-green rounded-full px-4 py-2 text-sm font-semibold">Live Site ↗</a></div>
+          </article>
+
+          <article class="glass rounded-3xl p-7 flex flex-col justify-center items-start reveal">
+            <span class="text-neon text-4xl">+</span>
+            <h3 class="text-2xl font-black mt-3">More projects</h3>
+            <p class="text-gray-500 mt-2">New client work and experiments are added regularly.</p>
+            <a href="https://github.com/surajsankar234" target="_blank" class="btn-outline rounded-full px-4 py-2 mt-5 text-sm">Explore GitHub ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-24">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="mb-10 reveal">
+          <p class="text-neon text-sm font-bold uppercase tracking-[.25em]">What I do</p>
+          <h2 class="text-4xl sm:text-5xl font-black mt-2">My <span class="green-text">Services</span></h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div class="service-card glass rounded-3xl p-6 reveal"><i data-lucide="globe-2" class="text-neon"></i><h3 class="font-bold text-lg mt-5">Web Development</h3><p class="text-sm text-gray-500 mt-2">Custom websites, Laravel apps, PHP, Filament and full-stack solutions.</p></div>
+          <div class="service-card glass rounded-3xl p-6 reveal"><i data-lucide="pen-tool" class="text-neon"></i><h3 class="font-bold text-lg mt-5">UI/UX & Design</h3><p class="text-sm text-gray-500 mt-2">Modern visual design using Photoshop, Illustrator and Canva.</p></div>
+          <div class="service-card glass rounded-3xl p-6 reveal"><i data-lucide="smartphone" class="text-neon"></i><h3 class="font-bold text-lg mt-5">Mobile Repairing</h3><p class="text-sm text-gray-500 mt-2">Mobile troubleshooting, software and hardware-related services.</p></div>
+          <div class="service-card glass rounded-3xl p-6 reveal"><i data-lucide="plug-zap" class="text-neon"></i><h3 class="font-bold text-lg mt-5">House Wiring</h3><p class="text-sm text-gray-500 mt-2">Electrical installation, maintenance and practical wiring support.</p></div>
+          <div class="service-card glass rounded-3xl p-6 reveal"><i data-lucide="settings-2" class="text-neon"></i><h3 class="font-bold text-lg mt-5">Technical Services</h3><p class="text-sm text-gray-500 mt-2">CCTV, computer setup, networking and other digital technical work.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24 border-y border-white/5">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-12 items-center">
+          <div class="glass rounded-[2rem] p-3 glow reveal">
+            <div class="rounded-[1.5rem] overflow-hidden bg-[#07130f]">
+              <img src="https://lh3.googleusercontent.com/a/ACg8ocIk8pYdz5zSP6ix694NXHaF7O3qd6YlGJrYNvxy_jJgFYQUJsAT=s192-c-mo" alt="Suraj Sankar" class="w-full aspect-[4/5] object-cover object-top">
+            </div>
           </div>
-
-        </div>
-
-      </div>
-
-      <div class="grid grid-cols-2 gap-4">
-
-        <img
-          src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=600&q=80"
-          class="w-full h-72 object-cover rounded-[35px] mt-10"
-          alt="Baking">
-
-        <img
-          src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=600&q=80"
-          class="w-full h-72 object-cover rounded-[35px]"
-          alt="Bakery">
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     REVIEWS
-========================================================= -->
-
-<section class="py-24 bg-white">
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <div class="text-center">
-
-      <span class="text-xs uppercase tracking-[.25em] text-sage font-bold">
-        Sweet words
-      </span>
-
-      <h2 class="display text-4xl sm:text-5xl mt-3">
-        You said it best.
-      </h2>
-
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-5 mt-12">
-
-      <div class="bg-cream p-7 rounded-[30px]">
-
-        <div class="flex gap-1 text-blush">
-          ★★★★★
-        </div>
-
-        <p class="mt-5 leading-7 text-deepSage/70">
-          “The cake looked beautiful and tasted even better.
-          Everyone at the birthday loved it!”
-        </p>
-
-        <div class="mt-6 font-bold">
-          — Anisha
-        </div>
-
-      </div>
-
-
-      <div class="bg-cream p-7 rounded-[30px]">
-
-        <div class="flex gap-1 text-blush">
-          ★★★★★
-        </div>
-
-        <p class="mt-5 leading-7 text-deepSage/70">
-          “Their croissants are honestly my new favorite.
-          Crispy outside, soft inside.”
-        </p>
-
-        <div class="mt-6 font-bold">
-          — Pratik
-        </div>
-
-      </div>
-
-
-      <div class="bg-cream p-7 rounded-[30px]">
-
-        <div class="flex gap-1 text-blush">
-          ★★★★★
-        </div>
-
-        <p class="mt-5 leading-7 text-deepSage/70">
-          “I ordered a custom cake and they made exactly
-          what I imagined. So pretty!”
-        </p>
-
-        <div class="mt-6 font-bold">
-          — Roshni
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     GALLERY
-========================================================= -->
-
-<section id="gallery" class="py-24">
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <div class="flex flex-col sm:flex-row justify-between sm:items-end gap-5">
-
-      <div>
-
-        <span class="text-xs uppercase tracking-[.25em] text-sage font-bold">
-          From our kitchen
-        </span>
-
-        <h2 class="display text-4xl sm:text-5xl mt-3">
-          A little Bloom love.
-        </h2>
-
-      </div>
-
-      <a href="#" class="font-semibold text-sm">
-        Follow @bloombake
-        <i data-lucide="instagram" class="inline w-4 h-4 ml-1"></i>
-      </a>
-
-    </div>
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-10">
-
-      <img
-        src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=600&q=80"
-        class="w-full aspect-square object-cover rounded-3xl"
-        alt="Cake">
-
-      <img
-        src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"
-        class="w-full aspect-square object-cover rounded-3xl"
-        alt="Bread">
-
-      <img
-        src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=600&q=80"
-        class="w-full aspect-square object-cover rounded-3xl"
-        alt="Cupcake">
-
-      <img
-        src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=600&q=80"
-        class="w-full aspect-square object-cover rounded-3xl"
-        alt="Cookies">
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     CONTACT / CTA
-========================================================= -->
-
-<section id="contact" class="py-24">
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <div class="bg-deepSage rounded-[40px] text-white p-8 sm:p-12 lg:p-16">
-
-      <div class="grid lg:grid-cols-2 gap-10 items-center">
-
-        <div>
-
-          <span class="text-xs uppercase tracking-[.25em] text-peach font-bold">
-            Let's make something sweet
-          </span>
-
-          <h2 class="display text-4xl sm:text-5xl mt-4">
-            Have a celebration
-            coming up?
-          </h2>
-
-          <p class="mt-5 text-white/60 leading-7 max-w-lg">
-            Tell us what you have in mind and we'll help turn
-            your idea into a beautiful cake.
-          </p>
-
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-3 lg:justify-end">
-
-          <button onclick="openModal('customModal')"
-            class="px-7 py-4 bg-white text-deepSage rounded-full font-semibold">
-
-            Request Custom Cake
-
-          </button>
-
-          <a href="https://wa.me/9779800000000"
-            target="_blank"
-            class="px-7 py-4 bg-[#25D366] text-white rounded-full font-semibold text-center">
-
-            WhatsApp Us
-
-          </a>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer class="bg-[#324132] text-white pt-16 pb-28 lg:pb-10">
-
-  <div class="max-w-7xl mx-auto px-5 lg:px-8">
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-
-      <div>
-
-        <div class="flex items-center gap-3">
-
-          <div class="w-11 h-11 rounded-full bg-white text-deepSage flex items-center justify-center">
-
-            <i data-lucide="flower-2"></i>
-
+          <div class="reveal">
+            <p class="text-neon text-sm font-bold uppercase tracking-[.25em]">About me</p>
+            <h2 class="text-4xl sm:text-5xl font-black mt-2">Turning ideas into <span class="green-text">digital reality.</span></h2>
+            <p class="text-gray-400 leading-7 mt-6">I'm Suraj Sankar, a full-stack web developer and digital technical service provider from Nepal. I enjoy building useful software, clean interfaces and practical solutions for real businesses and organizations.</p>
+            <div class="grid sm:grid-cols-2 gap-3 mt-7">
+              <div class="glass rounded-2xl p-4"><span class="text-neon">01</span><p class="font-semibold mt-1">Class 12 Science</p><p class="text-xs text-gray-500">Shree Public High School</p></div>
+              <div class="glass rounded-2xl p-4"><span class="text-neon">02</span><p class="font-semibold mt-1">Full-Stack Developer</p><p class="text-xs text-gray-500">Laravel • PHP • JS • SQL</p></div>
+              <div class="glass rounded-2xl p-4"><span class="text-neon">03</span><p class="font-semibold mt-1">Creative Designer</p><p class="text-xs text-gray-500">Adobe • Canva</p></div>
+              <div class="glass rounded-2xl p-4"><span class="text-neon">04</span><p class="font-semibold mt-1">Technical Services</p><p class="text-xs text-gray-500">Mobile • Electrical • IT</p></div>
+            </div>
+            <a href="#contact" class="inline-flex btn-green rounded-full px-6 py-3 mt-7 font-bold">Start a Project →</a>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div>
-            <p class="display text-xl font-bold">
-              Bloom Bake
-            </p>
+    <!-- CONTACT -->
+    <section id="contact" class="py-24">
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="glass rounded-[2rem] p-6 sm:p-10 lg:p-12 reveal">
+          <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-12">
+            <div>
+              <p class="text-neon text-sm font-bold uppercase tracking-[.25em]">Get in touch</p>
+              <h2 class="text-4xl sm:text-5xl font-black mt-2">Let's build something <span class="green-text">great.</span></h2>
+              <p class="text-gray-500 mt-5 leading-7">Have a website idea, software project, design requirement or technical service need? Send a message.</p>
 
-            <p class="text-[9px] tracking-[.25em] uppercase text-white/50">
-              Bakery & Café
-            </p>
+              <div class="mt-8 space-y-4">
+                <a href="https://wa.me/9779767166467" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl border border-white/5 hover:border-neon/30 transition">
+                  <span class="w-11 h-11 rounded-xl bg-neon/10 grid place-items-center text-neon"><i data-lucide="message-circle"></i></span>
+                  <span><small class="text-gray-500 block">WhatsApp</small><b>+977 9767166467</b></span>
+                </a>
+                <a href="mailto:drsurajsankar@gmail.com" class="flex items-center gap-4 p-4 rounded-2xl border border-white/5 hover:border-neon/30 transition">
+                  <span class="w-11 h-11 rounded-xl bg-neon/10 grid place-items-center text-neon"><i data-lucide="mail"></i></span>
+                  <span><small class="text-gray-500 block">Email</small><b>drsurajsankar@gmail.com</b></span>
+                </a>
+                <a href="https://github.com/surajsankar234" target="_blank" class="flex items-center gap-4 p-4 rounded-2xl border border-white/5 hover:border-neon/30 transition">
+                  <span class="w-11 h-11 rounded-xl bg-neon/10 grid place-items-center text-neon"><i data-lucide="github"></i></span>
+                  <span><small class="text-gray-500 block">GitHub</small><b>surajsankar234</b></span>
+                </a>
+              </div>
+            </div>
+
+            <form id="contactForm" class="grid sm:grid-cols-2 gap-4">
+              <div><label class="text-xs text-gray-500">Your name</label><input required class="form-input mt-2" name="name" placeholder="Your name"></div>
+              <div><label class="text-xs text-gray-500">Email</label><input required type="email" class="form-input mt-2" name="email" placeholder="you@example.com"></div>
+              <div class="sm:col-span-2"><label class="text-xs text-gray-500">Project type</label><select class="form-input mt-2" name="type"><option>Website Development</option><option>Laravel / Software</option><option>UI/UX Design</option><option>Graphic Design</option><option>Technical Service</option><option>Other</option></select></div>
+              <div class="sm:col-span-2"><label class="text-xs text-gray-500">Message</label><textarea required rows="6" class="form-input mt-2 resize-none" name="message" placeholder="Tell me about your project..."></textarea></div>
+              <button class="sm:col-span-2 btn-green rounded-xl py-3.5 font-bold" type="submit">Send via WhatsApp →</button>
+              <p class="sm:col-span-2 text-xs text-gray-600">This static portfolio opens WhatsApp with your message; no backend is required.</p>
+            </form>
           </div>
-
         </div>
-
-        <p class="text-white/50 text-sm leading-7 mt-5 max-w-xs">
-          Small-batch cakes, pastries and coffee
-          made for your everyday happy moments.
-        </p>
-
       </div>
+    </section>
+  </main>
 
-
-      <div>
-
-        <h4 class="font-bold mb-5">
-          Explore
-        </h4>
-
-        <div class="flex flex-col gap-3 text-sm text-white/55">
-
-          <a href="#menu">Menu</a>
-          <a href="#specials">Today's Special</a>
-          <a href="#story">Our Story</a>
-          <a href="#gallery">Gallery</a>
-
-        </div>
-
-      </div>
-
-
-      <div>
-
-        <h4 class="font-bold mb-5">
-          Visit Us
-        </h4>
-
-        <div class="space-y-4 text-sm text-white/55">
-
-          <p>
-            Dharan, Nepal
-          </p>
-
-          <p>
-            Sun – Sat · 7:00 AM – 8:00 PM
-          </p>
-
-          <p>
-            +977 98XXXXXXXX
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div>
-
-        <h4 class="font-bold mb-5">
-          Stay in the loop
-        </h4>
-
-        <p class="text-sm text-white/50 mb-4">
-          Get sweet updates & special offers.
-        </p>
-
-        <div class="flex">
-
-          <input
-            type="email"
-            placeholder="Your email"
-            class="w-full bg-white/10 border border-white/10 rounded-l-full px-4 py-3 text-sm outline-none">
-
-          <button
-            class="bg-blush text-white px-5 rounded-r-full">
-
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-
-          </button>
-
-        </div>
-
-      </div>
-
+  <footer class="border-t border-white/5 py-8">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 flex flex-col sm:flex-row justify-between gap-4 text-sm text-gray-600">
+      <p>© <span id="year"></span> Suraj Sankar. All rights reserved.</p>
+      <p>Code <span class="text-neon">•</span> Design <span class="text-neon">•</span> Create <span class="text-neon">•</span> Grow</p>
+      <a href="#home" class="text-neon">Back to top ↑</a>
     </div>
+  </footer>
 
-    <div class="border-t border-white/10 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-3 text-xs text-white/35">
-
-      <p>
-        © 2026 Bloom Bake. All rights reserved.
-      </p>
-
-      <p>
-        Made with ♥ and lots of butter.
-      </p>
-
-    </div>
-
+  <div id="toast" class="toast glass rounded-xl px-5 py-4">
+    <b class="text-neon">Message ready!</b>
+    <p class="text-sm text-gray-400 mt-1">WhatsApp is opening…</p>
   </div>
 
-</footer>
-
-
-<!-- =========================================================
-     MOBILE BOTTOM NAV
-========================================================= -->
-
-<div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-sage/10 px-3 py-2">
-
-  <div class="grid grid-cols-4">
-
-    <a href="#home" class="flex flex-col items-center gap-1 py-2 text-[10px]">
-      <i data-lucide="home" class="w-5 h-5"></i>
-      Home
-    </a>
-
-    <a href="#menu" class="flex flex-col items-center gap-1 py-2 text-[10px]">
-      <i data-lucide="cake-slice" class="w-5 h-5"></i>
-      Menu
-    </a>
-
-    <button onclick="openModal('orderModal')" class="flex flex-col items-center gap-1 py-2 text-[10px]">
-      <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-      Order
-    </button>
-
-    <a href="#contact" class="flex flex-col items-center gap-1 py-2 text-[10px]">
-      <i data-lucide="phone" class="w-5 h-5"></i>
-      Contact
-    </a>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     SEARCH MODAL
-========================================================= -->
-
-<div id="searchModal"
-  class="modal fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm items-start justify-center p-5 pt-24">
-
-  <div class="bg-cream w-full max-w-xl rounded-[30px] p-6">
-
-    <div class="flex justify-between items-center mb-5">
-
-      <h3 class="display text-2xl">
-        Search Bloom
-      </h3>
-
-      <button onclick="closeModal('searchModal')">
-        <i data-lucide="x"></i>
-      </button>
-
-    </div>
-
-    <div class="relative">
-
-      <i data-lucide="search"
-        class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-deepSage/40"></i>
-
-      <input
-        id="searchInput"
-        oninput="searchProducts()"
-        type="text"
-        placeholder="Search cakes, pastries, coffee..."
-        class="w-full bg-white rounded-full py-4 pl-12 pr-5 outline-none">
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     CART MODAL
-========================================================= -->
-
-<div id="cartModal"
-  class="modal fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm items-end sm:items-center justify-center p-4">
-
-  <div class="bg-cream w-full max-w-md rounded-[30px] p-6">
-
-    <div class="flex justify-between items-center">
-
-      <h3 class="display text-2xl">
-        Your Basket
-      </h3>
-
-      <button onclick="closeModal('cartModal')">
-        <i data-lucide="x"></i>
-      </button>
-
-    </div>
-
-    <div id="cartItems" class="py-8 text-center text-deepSage/50">
-      Your basket is empty.
-    </div>
-
-    <div class="border-t border-sage/10 pt-5">
-
-      <div class="flex justify-between font-bold">
-
-        <span>Total</span>
-
-        <span id="cartTotal">
-          Rs. 0
-        </span>
-
-      </div>
-
-      <button onclick="checkout()"
-        class="w-full bg-deepSage text-white py-4 rounded-full mt-5 font-semibold">
-
-        Continue to Order
-
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     ORDER MODAL
-========================================================= -->
-
-<div id="orderModal"
-  class="modal fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm items-center justify-center p-4">
-
-  <div class="bg-cream w-full max-w-lg rounded-[32px] p-6 sm:p-8 max-h-[90vh] overflow-y-auto">
-
-    <div class="flex justify-between items-center">
-
-      <div>
-        <span class="text-xs uppercase tracking-widest text-sage font-bold">
-          Order
-        </span>
-
-        <h3 class="display text-3xl mt-1">
-          Let's make it happen.
-        </h3>
-      </div>
-
-      <button onclick="closeModal('orderModal')">
-        <i data-lucide="x"></i>
-      </button>
-
-    </div>
-
-    <form onsubmit="submitOrder(event)" class="mt-7 space-y-4">
-
-      <input id="orderProduct"
-        type="text"
-        placeholder="What would you like?"
-        required
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none">
-
-      <input
-        type="text"
-        placeholder="Your name"
-        required
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none">
-
-      <input
-        type="tel"
-        placeholder="Phone number"
-        required
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none">
-
-      <select
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none">
-
-        <option>Pickup from bakery</option>
-        <option>Home delivery</option>
-
-      </select>
-
-      <input
-        type="date"
-        required
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none">
-
-      <textarea
-        rows="4"
-        placeholder="Any special instructions?"
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none resize-none"></textarea>
-
-      <button
-        class="w-full bg-deepSage text-white py-4 rounded-full font-semibold">
-
-        Send Order Request
-
-      </button>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     CUSTOM CAKE MODAL
-========================================================= -->
-
-<div id="customModal"
-  class="modal fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm items-center justify-center p-4">
-
-  <div class="bg-cream w-full max-w-lg rounded-[32px] p-6 sm:p-8 max-h-[90vh] overflow-y-auto">
-
-    <div class="flex justify-between">
-
-      <div>
-
-        <span class="text-xs uppercase tracking-widest text-sage font-bold">
-          Custom cake
-        </span>
-
-        <h3 class="display text-3xl mt-1">
-          Dream it. We'll bake it.
-        </h3>
-
-      </div>
-
-      <button onclick="closeModal('customModal')">
-        <i data-lucide="x"></i>
-      </button>
-
-    </div>
-
-    <form onsubmit="submitCustom(event)" class="mt-7 space-y-4">
-
-      <input
-        type="text"
-        placeholder="Your name"
-        required
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none">
-
-      <input
-        type="tel"
-        placeholder="Phone / WhatsApp"
-        required
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none">
-
-      <select
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none">
-
-        <option>Birthday Cake</option>
-        <option>Anniversary Cake</option>
-        <option>Wedding Cake</option>
-        <option>Baby Shower</option>
-        <option>Other</option>
-
-      </select>
-
-      <select
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none">
-
-        <option>1 kg</option>
-        <option>1.5 kg</option>
-        <option>2 kg</option>
-        <option>3 kg+</option>
-
-      </select>
-
-      <textarea
-        rows="4"
-        placeholder="Describe your dream cake..."
-        required
-        class="w-full bg-white rounded-2xl px-5 py-4 outline-none resize-none"></textarea>
-
-      <button
-        class="w-full bg-deepSage text-white py-4 rounded-full font-semibold">
-
-        Request Custom Cake
-
-      </button>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     BOX MODAL
-========================================================= -->
-
-<div id="boxModal"
-  class="modal fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm items-center justify-center p-4">
-
-  <div class="bg-cream w-full max-w-lg rounded-[32px] p-6 sm:p-8">
-
-    <div class="flex justify-between">
-
-      <div>
-        <span class="text-xs uppercase tracking-widest text-sage font-bold">
-          Dessert box
-        </span>
-
-        <h3 class="display text-3xl mt-1">
-          Build your box
-        </h3>
-      </div>
-
-      <button onclick="closeModal('boxModal')">
-        <i data-lucide="x"></i>
-      </button>
-
-    </div>
-
-    <div class="space-y-3 mt-7">
-
-      <label class="flex items-center justify-between bg-white p-4 rounded-2xl">
-
-        <div>
-          <p class="font-semibold">
-            Mini Cake
-          </p>
-          <p class="text-xs text-deepSage/40">
-            + Rs. 150
-          </p>
-        </div>
-
-        <input type="checkbox" class="box-item" value="150">
-
-      </label>
-
-      <label class="flex items-center justify-between bg-white p-4 rounded-2xl">
-
-        <div>
-          <p class="font-semibold">
-            Brownie
-          </p>
-          <p class="text-xs text-deepSage/40">
-            + Rs. 120
-          </p>
-        </div>
-
-        <input type="checkbox" class="box-item" value="120">
-
-      </label>
-
-      <label class="flex items-center justify-between bg-white p-4 rounded-2xl">
-
-        <div>
-          <p class="font-semibold">
-            Cookie
-          </p>
-          <p class="text-xs text-deepSage/40">
-            + Rs. 80
-          </p>
-        </div>
-
-        <input type="checkbox" class="box-item" value="80">
-
-      </label>
-
-      <label class="flex items-center justify-between bg-white p-4 rounded-2xl">
-
-        <div>
-          <p class="font-semibold">
-            Donut
-          </p>
-          <p class="text-xs text-deepSage/40">
-            + Rs. 100
-          </p>
-        </div>
-
-        <input type="checkbox" class="box-item" value="100">
-
-      </label>
-
-    </div>
-
-    <div class="flex justify-between mt-7 font-bold">
-
-      <span>Estimated Total</span>
-
-      <span id="boxTotal">
-        Rs. 499
-      </span>
-
-    </div>
-
-    <button onclick="orderBox()"
-      class="w-full bg-deepSage text-white py-4 rounded-full mt-5 font-semibold">
-
-      Order My Box
-
-    </button>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     TOAST
-========================================================= -->
-
-<div id="toast"
-  class="toast fixed bottom-24 lg:bottom-8 left-1/2 -translate-x-1/2 z-[200]">
-
-  <div class="bg-deepSage text-white px-5 py-3 rounded-full shadow-xl text-sm flex items-center gap-2">
-
-    <i data-lucide="check-circle" class="w-4 h-4"></i>
-
-    <span id="toastText">
-      Added to basket
-    </span>
-
-  </div>
-
-</div>
-
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
-<script>
-
-  lucide.createIcons();
-
-
-  /* ================================
-     HEADER
-  ================================= */
-
-  const header = document.getElementById('header');
-
-  window.addEventListener('scroll', () => {
-
-    if(window.scrollY > 30){
-
-      header.classList.add(
-        'bg-cream/90',
-        'backdrop-blur-xl',
-        'shadow-sm'
-      );
-
-    }else{
-
-      header.classList.remove(
-        'bg-cream/90',
-        'backdrop-blur-xl',
-        'shadow-sm'
-      );
-
-    }
-
-  });
-
-
-  /* ================================
-     MOBILE MENU
-  ================================= */
-
-  function toggleMenu(){
-
-    document
-      .getElementById('mobileMenu')
-      .classList.toggle('hidden');
-
-  }
-
-
-  /* ================================
-     MODALS
-  ================================= */
-
-  function openModal(id){
-
-    document
-      .getElementById(id)
-      .classList.add('show');
-
-    document.body.style.overflow = 'hidden';
-
-  }
-
-
-  function closeModal(id){
-
-    document
-      .getElementById(id)
-      .classList.remove('show');
-
-    document.body.style.overflow = '';
-
-  }
-
-
-  document.querySelectorAll('.modal').forEach(modal => {
-
-    modal.addEventListener('click', function(e){
-
-      if(e.target === modal){
-
-        closeModal(modal.id);
-
-      }
-
-    });
-
-  });
-
-
-  document.addEventListener('keydown', e => {
-
-    if(e.key === 'Escape'){
-
-      document.querySelectorAll('.modal.show')
-        .forEach(m => closeModal(m.id));
-
-    }
-
-  });
-
-
-  /* ================================
-     CART
-  ================================= */
-
-  let cart = [];
-
-
-  function addToCart(name, price){
-
-    cart.push({
-      name,
-      price
-    });
-
-    updateCart();
-
-    showToast(name + ' added to basket');
-
-  }
-
-
-  function updateCart(){
-
-    document.getElementById('cartCount').textContent =
-      cart.length;
-
-    const container =
-      document.getElementById('cartItems');
-
-    if(cart.length === 0){
-
-      container.innerHTML =
-        'Your basket is empty.';
-
-      document.getElementById('cartTotal').textContent =
-        'Rs. 0';
-
-      return;
-
-    }
-
-
-    let total = 0;
-
-    container.innerHTML = cart.map((item,index) => {
-
-      total += item.price;
-
-      return `
-        <div class="flex items-center justify-between py-3 border-b border-sage/10">
-
-          <div>
-            <p class="font-semibold text-sm">
-              ${item.name}
-            </p>
-
-            <p class="text-xs text-deepSage/40">
-              Rs. ${item.price}
-            </p>
-          </div>
-
-          <button
-            onclick="removeCart(${index})"
-            class="text-red-400">
-
-            <i data-lucide="trash-2" class="w-4 h-4"></i>
-
-          </button>
-
-        </div>
-      `;
-
-    }).join('');
-
-    document.getElementById('cartTotal').textContent =
-      'Rs. ' + total;
-
-    lucide.createIcons();
-
-  }
-
-
-  function removeCart(index){
-
-    cart.splice(index,1);
-
-    updateCart();
-
-    showToast('Item removed');
-
-  }
-
-
-  function checkout(){
-
-    if(cart.length === 0){
-
-      showToast('Your basket is empty');
-
-      return;
-
-    }
-
-    let names =
-      cart.map(item => item.name).join(', ');
-
-    closeModal('cartModal');
-
-    document.getElementById('orderProduct').value =
-      names;
-
-    openModal('orderModal');
-
-  }
-
-
-  /* ================================
-     QUICK ORDER
-  ================================= */
-
-  function quickOrder(product){
-
-    document.getElementById('orderProduct').value =
-      product;
-
-    openModal('orderModal');
-
-  }
-
-
-  /* ================================
-     ORDER
-  ================================= */
-
-  function submitOrder(e){
-
-    e.preventDefault();
-
-    const product =
-      document.getElementById('orderProduct').value;
-
-    const message =
-      `Hello Bloom Bake!%0A%0AI want to order: ${encodeURIComponent(product)}%0A%0APlease confirm my order.`;
-
-    window.open(
-      `https://wa.me/9779800000000?text=${message}`,
-      '_blank'
-    );
-
-    closeModal('orderModal');
-
-    showToast('Opening WhatsApp...');
-
-  }
-
-
-  /* ================================
-     CUSTOM CAKE
-  ================================= */
-
-  function submitCustom(e){
-
-    e.preventDefault();
-
-    const message =
-      `Hello Bloom Bake! I want to request a custom cake.`;
-
-    window.open(
-      `https://wa.me/9779800000000?text=${encodeURIComponent(message)}`,
-      '_blank'
-    );
-
-    closeModal('customModal');
-
-    showToast('Opening WhatsApp...');
-
-  }
-
-
-  /* ================================
-     FILTER
-  ================================= */
-
-  function filterProducts(category, button){
-
-    document.querySelectorAll('.category-btn')
-      .forEach(btn => btn.classList.remove('active'));
-
-    button.classList.add('active');
-
-
-    document.querySelectorAll('.product')
-      .forEach(product => {
-
-        if(category === 'all'){
-
-          product.classList.remove('hide-product');
-
-        }else{
-
-          if(product.classList.contains(category)){
-
-            product.classList.remove('hide-product');
-
-          }else{
-
-            product.classList.add('hide-product');
-
-          }
-
-        }
-
-      });
-
-  }
-
-
-  /* ================================
-     SEARCH
-  ================================= */
-
-  function searchProducts(){
-
-    const query =
-      document.getElementById('searchInput')
-        .value
-        .toLowerCase();
-
-    document.querySelectorAll('.product')
-      .forEach(product => {
-
-        const text =
-          product.innerText.toLowerCase();
-
-        if(text.includes(query)){
-
-          product.classList.remove('hide-product');
-
-        }else{
-
-          product.classList.add('hide-product');
-
-        }
-
-      });
-
-  }
-
-
-  /* ================================
-     BUILD BOX
-  ================================= */
-
-  const boxItems =
-    document.querySelectorAll('.box-item');
-
-  boxItems.forEach(item => {
-
-    item.addEventListener('change', updateBox);
-
-  });
-
-
-  function updateBox(){
-
-    let total = 499;
-
-    document.querySelectorAll('.box-item:checked')
-      .forEach(item => {
-
-        total += Number(item.value);
-
-      });
-
-    document.getElementById('boxTotal').textContent =
-      'Rs. ' + total;
-
-  }
-
-
-  function orderBox(){
-
-    closeModal('boxModal');
-
-    openModal('orderModal');
-
-    document.getElementById('orderProduct').value =
-      'Custom Dessert Box';
-
-  }
-
-
-  /* ================================
-     TOAST
-  ================================= */
-
-  function showToast(message){
-
-    const toast =
-      document.getElementById('toast');
-
-    document.getElementById('toastText')
-      .textContent = message;
-
-    toast.classList.add('show');
-
-    setTimeout(() => {
-
-      toast.classList.remove('show');
-
-    }, 2500);
-
-  }
-
-
-  /* ================================
-     ANIMATION OBSERVER
-  ================================= */
-
-  const observer =
-    new IntersectionObserver(
-      entries => {
-
-        entries.forEach(entry => {
-
-          if(entry.isIntersecting){
-
-            entry.target.classList.add('fade-up');
-
-            observer.unobserve(entry.target);
-
-          }
-
-        });
-
-      },
-      {
-        threshold: .1
-      }
-    );
-
-
-  document
-    .querySelectorAll('section > div')
-    .forEach(el => observer.observe(el));
-
-
-  lucide.createIcons();
-
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
