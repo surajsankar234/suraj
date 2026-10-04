@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://surajsankar.com.np/sitemap.xml
