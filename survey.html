@@ -1,0 +1,140 @@
+```html
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NBT Survey Portal</title>
+  <meta name="description" content="NBT Survey Portal - Survey, Admin Dashboard and Database Access">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #071b35, #123e68);
+      color: #fff;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 460px;
+      padding: 32px 24px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      width: 65px;
+      height: 65px;
+      margin: 0 auto 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: #38bdf8;
+      color: #071b35;
+      font-size: 27px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: 27px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #cbdced;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .links {
+      display: grid;
+      gap: 13px;
+    }
+
+    .btn {
+      display: block;
+      padding: 15px 18px;
+      border-radius: 11px;
+      background: #fff;
+      color: #102c4b;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .btn.primary {
+      background: #38bdf8;
+      color: #06213c;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(0.95);
+    }
+
+    .footer {
+      margin-top: 27px;
+      color: #a9c2da;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <div class="logo">NBT</div>
+
+    <h1>Survey Portal</h1>
+    <p class="subtitle">
+      NBT Survey System मा स्वागत छ।<br>
+      आवश्यक सेवा छानेर अगाडि बढ्नुहोस्।
+    </p>
+
+    <div class="links">
+      <a class="btn primary"
+         href="https://script.google.com/macros/s/AKfycbzeXdhR8euARYlT6tnrM9DaS6R-4LWeaXq47DPiyi1z/dev"
+         target="_blank" rel="noopener noreferrer">
+        Survey Form खोल्नुहोस्
+      </a>
+
+      <a class="btn"
+         href="https://script.google.com/macros/s/AKfycbyuQS3L0sWw9SH3OKbolV9BiOI5blnQBYXyE_LaXkuYxtsYKF_mBr95TRBXUbG0Ep_0-A/exec?page=admin"
+         target="_blank" rel="noopener noreferrer">
+        Admin Dashboard खोल्नुहोस्
+      </a>
+
+      <a class="btn"
+         href="https://docs.google.com/spreadsheets/d/11Xs1A3PeYPYLVYYTftfODRu1SdKSLtrkUG0cW6pZGak/edit"
+         target="_blank" rel="noopener noreferrer">
+        Survey Database खोल्नुहोस्
+      </a>
+    </div>
+
+    <p class="footer">
+      © <span id="year"></span> NBT Survey Portal
+    </p>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
+```
